@@ -1,3 +1,12 @@
 <h1>Result</h1>
-<%= @user_word %>
+<% if @is_in_array %>
+  <% if @is_english_word %>
+    <p><strong>Congratulations!</strong> <%= @user_input.upcase %> is a valid English word!</p>
+  <% else %>
+    <p>Sorry but <strong><%= @user_input.upcase %></strong> does not seem to be a valid English word...</p>
+  <% end %>
+<% else %>
+  <p>Sorry but <strong><%= @user_input.upcase %></strong> can't be built out of <%= @letters.join(", ") %></p>
+<% end %>
+
 <%= link_to "Play again", new_path %>

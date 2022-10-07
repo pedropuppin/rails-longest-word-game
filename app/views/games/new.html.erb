@@ -1,14 +1,20 @@
-<div class="container col-6 mt-5">
-  <div class="game-info border border-secondary rounded p-3">
-    <h1>New Game</h1>
-    <%= @letters %>
-    <form action="/score" method="TODO" data-turbo="false">
-      <p>What's the longest word you can find?</p>
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" name="word" placeholder="type in a word!" aria-label="Recipient's username" aria-describedby="button-addon2">
-        <button class="btn btn-primary" type="submit" id="button-addon2">Play</button>
-      </div>
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    </form>
-  </div>
+<div class="container col-6 mt-5 border border-secondary rounded p-3">
+  <h1>New Game</h1>
+
+  <ul class="letters">
+    <% @letters.each do | letter | %>
+      <li><%= letter %></li>
+    <% end %>
+  </ul>
+
+    <p>What is the longest word you can find?</p>
+
+  <form action="/score" method="POST" data-turbo="false">
+    <div class="input-group mb-3">
+      <input type="text" class="form-control" name="word" placeholder="type in a word!" aria-label="Recipient's username" aria-describedby="button-addon2">
+      <button class="btn btn-primary" type="submit" id="button-addon2">Play</button>
+    </div>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @letters %>
+  </form>
 </div>
