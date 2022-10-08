@@ -11,7 +11,7 @@ class GamesController < ApplicationController
   end
 
   def score
-    @letters = params[:letters].split
+    @letters = params[:batata].split
     @user_input = params[:word] || ""
     @is_in_array = include?(@user_input, @letters)
     @is_english_word = is_english?(@user_input)
